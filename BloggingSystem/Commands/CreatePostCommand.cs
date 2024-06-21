@@ -9,5 +9,6 @@ namespace BloggingSystem.Commands
         public string Content { get; set; }
         public DateTime DatePublished { get; set; }
         public int BlogId { get; set; }
+        public int AuthorId { get; set; }
     }
 }

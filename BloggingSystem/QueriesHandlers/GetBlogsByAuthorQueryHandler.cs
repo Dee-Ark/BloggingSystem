@@ -14,7 +14,7 @@ namespace BloggingSystem.QueriesHandlers
         }
         public Task<IEnumerable<Blog>> Handle(GetBlogsByAuthorQuery request, CancellationToken cancellationToken)
         {
-            var blogs = _unitOfWork.Blogs.GetAll().Where(b => b.Posts.Any(p => p.Id == request.AuthorId));
+            var blogs = _unitOfWork.Blogs.GetAll().Where(b => b.Posts.Any(p => p.BlogId == request.AuthorId));
             return Task.FromResult(blogs);
         }
     }

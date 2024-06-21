@@ -19,7 +19,8 @@ namespace BloggingSystem.Handlers
                 Title = request.Title,
                 Content = request.Content,
                 DatePublished = request.DatePublished,
-                BlogId = request.BlogId
+                BlogId = request.BlogId,
+                Id = request.AuthorId
             };
             _unitOfWork.Posts.Add(post);
             _unitOfWork.Complete();
