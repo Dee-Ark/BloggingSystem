@@ -1,20 +1,27 @@
-﻿version: '3.4'
+﻿version: '3.8'
 
 services:
-  yourprojectname:
-    image: bloggingsystem
-    build:
-      context: .
-      dockerfile: BloggingSystem/Dockerfile
-    ports:
-      - "8080:80"
-    depends_on:
-      - db
-
   db:
-    image: postgres:latest
+    image: postgres:15
     environment:
-      POSTGRES_PASSWORD: "Password@123"
+      POSTGRES_USER: localhost
+      POSTGRES_PASSWORD: Password@123
+      POSTGRES_DB: BlogTaskDB
+    networks:
+      - mynetwork
     ports:
       - "5432:5432"
 
+  app:
+    image: bloggingsystemimage
+    depends_on:
+      - db
+    environment:
+      - CONNECTION_STRING=Host=db;Port=5432;Username=postgres;Password=Password@123;Database=BlogTaskDB
+    networks:
+      - bloggingsystem:dev
+    ports:
+      - "32771:8080"
+
+networks:
+  mynetwork:
